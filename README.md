@@ -1,236 +1,170 @@
-🤖 Basic Discord Bot Structure (Python)
-
-<p align="center">
-  <img src="https://img.shields.io/badge/discord.py-2.3+-5865F2?style=for-the-badge&logo=discord" />
-  <img src="https://img.shields.io/badge/python-3.10+-yellow?style=for-the-badge&logo=python" />
-  <img src="https://img.shields.io/github/stars/ayush-gh0sh/Basic-Bot-Structure?style=for-the-badge" />
+<!-- BANNER --><p align="center">
+  <img src="https://capsule-render.vercel.app/api?type=waving&color=5865F2&height=200&section=header&text=Discord%20Bot%20Structure&fontSize=40&fontColor=ffffff&animation=fadeIn" />
+</p><h1 align="center">🤖 Basic Discord Bot Structure</h1><p align="center">
+  A clean, scalable & production-ready Discord bot template using discord.py
 </p><p align="center">
-  <b>Clean, role-based Discord bot with modular command loading + UI system.</b>
+  <img src="https://img.shields.io/github/stars/ayush-gh0sh/Basic-Bot-Structure?style=for-the-badge&color=yellow" />
+  <img src="https://img.shields.io/github/forks/ayush-gh0sh/Basic-Bot-Structure?style=for-the-badge&color=blue" />
+  <img src="https://img.shields.io/github/license/ayush-gh0sh/Basic-Bot-Structure?style=for-the-badge&color=green" />
 </p>
 
 ---
 
-✨ Overview
+✨ Why This Repo?
 
-This repository is built with a minimal but scalable architecture:
+Most beginner bots are:
 
-- 📂 Commands organized by folders (currently "users/")
-- ⚙️ Automatic cog loader (no manual imports)
-- 🧩 UI system separated (buttons, views, modals)
-- 🚀 Easy to scale into large bots
+- ❌ Messy
+- ❌ Hard to scale
+- ❌ Poorly structured
+
+This repo solves that with:
+
+- 📂 Clean modular architecture
+- ⚡ Fast setup
+- 🔁 Auto-loading commands
+- 🧠 Easy to extend
+- 🚀 Production-ready base
 
 ---
 
-📂 Current Structure
+🚀 Features
 
-bot/
+- ⚡ Plug & Play Setup
+- 📦 Cog-based command system
+- 🔄 Auto command loader
+- 🧱 Scalable architecture
+- 🔐 Secure config handling
+- 📁 Organized folder structure
+
+---
+
+📁 Project Structure
+```
+Basic-Bot-Structure/
 │
-├── users/              # ✅ All user commands (auto-loaded)
+├── bot.py              # Main bot file
+├── config.json         # Configuration
+├── requirements.txt    # Dependencies
+│
+├── Users/               # Commands
 │   ├── ping.py
-│   └── calc.py
-│
-├── bot.py              # Main bot (loader system)
-├── config.json
-├── requirements.txt
-└── README.md
-
----
-
-🧠 Core System Explanation
-
-📌 Command System ("users/")
-
-- All files inside "users/" are loaded automatically
-- Each file must:
-  - be a Cog
-  - contain a "setup()" function
-
-async def setup(bot):
-    await bot.add_cog(YourCog(bot))
-
----
-
-📌 UI System ("ui/") ⚠️ IMPORTANT
-
-This is where most people mess up — read carefully.
-
-❌ These files are NOT loaded automatically:
-
-- buttons
-- views
-- modals
-
-👉 Because they do not contain "setup()"
-
----
-
-🧩 How UI Actually Works
-
-UI files are manually imported inside command files.
-
----
-
-🔹 Example Flow
-
-users/panel.py → ui/views.py → ui/buttons.py
-
----
-
-🔹 Example Button Usage
-
-"ui/buttons.py"
-
-import discord
-
-class MyButton(discord.ui.Button):
-    def __init__(self):
-        super().__init__(label="Click Me", style=discord.ButtonStyle.primary)
-
-    async def callback(self, interaction: discord.Interaction):
-        await interaction.response.send_message("Button clicked!", ephemeral=True)
-
----
-
-"ui/views.py"
-
-import discord
-from ui.buttons import MyButton
-
-class MyView(discord.ui.View):
-    def __init__(self):
-        super().__init__(timeout=None)
-        self.add_item(MyButton())
-
----
-
-"users/panel.py"
-
-from discord.ext import commands
-from ui.views import MyView
-
-class Panel(commands.Cog):
-    def __init__(self, bot):
-        self.bot = bot
-
-    @commands.command()
-    async def panel(self, ctx):
-        await ctx.send("Click below:", view=MyView())
-
-async def setup(bot):
-    await bot.add_cog(Panel(bot))
-
----
-
-⚠️ VERY IMPORTANT RULES
-
-✔️ Commands Folder ("users/")
-
-- Must contain "setup()"
-- Automatically loaded by bot
-
----
-
-❌ UI Folder ("ui/")
-
-- Must NOT contain "setup()"
-- Never auto-loaded
-- Only imported manually
-
----
-
-❗ Why This Separation?
-
-- Keeps bot structure clean
-- Prevents loader errors
-- Avoids ""no setup function"" issues
-- Matches real production bots
-
----
-
-🚀 Scaling Your Structure
-
-🔹 Option 1 (Role-Based — Recommended)
-
-bot/
-├── users/
-├── moderator/
-├── admin/
-├── ui/
-
----
-
-🔹 Option 2 (Advanced Structure)
-
-bot/
-├── commands/
-│   ├── users/
-│   ├── moderator/
-│   └── admin/
-├── ui/
-
+└   └── help.py
+```
 ---
 
 ⚙️ Installation
 
+1️⃣ Clone the Repo
+```
 git clone https://github.com/ayush-gh0sh/Basic-Bot-Structure.git
 cd Basic-Bot-Structure
+```
+2️⃣ Install Requirements
+```
 pip install -r requirements.txt
-
----
-
-🔑 Configuration
-
+```
+3️⃣ Configure Bot
+Edit "config.json":
+```
 {
   "token": "YOUR_BOT_TOKEN",
   "prefix": ".",
-  "status": "Code By drunken.py"
+  "status": "Code By Drunken.py"
 }
-
+```
 ---
 
-▶️ Run
-
+▶️ Run the Bot
+```
 python bot.py
+```
+---
+
+📸 Preview
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/github/explore/main/topics/discord/discord.png" width="600"/>
+</p>
 
 ---
 
-🎯 Design Philosophy
-
-«Simple → Clean → Scalable»
-
-This repo avoids:
-
-- ❌ Over-complicated structure
-- ❌ Unnecessary folders
-- ❌ Confusing loaders
+📖 Example Commands
+| Command | Description |
+|--------|------------|
+| `.ping` | Check bot latency |
+| `.help` | Show commands |
 
 ---
 
-🔥 Why This Is Good
+🧠 How It Works
 
-- ✅ Beginner friendly
-- ✅ Clean GitHub structure
-- ✅ Easy to extend
-- ✅ No loader errors
-- ✅ Proper UI separation
-
----
-
-🚀 Future Upgrades
-
-- Add role-based folders ("moderator/", "admin/")
-- Add "events/" system
-- Add database ("JSON / MongoDB")
-- Add advanced UI (ticket system)
+- "bot.py" → core entry point
+- "cogs/" → all commands live here
+- Auto-loader loads every cog dynamically
+- Easy to scale without touching core
 
 ---
 
-📜 License
+🔧 Add Your Own Command
+```
+from discord.ext import commands
 
-MIT License
+class Example(commands.Cog):
+    def __init__(self, bot):
+        self.bot = bot
+
+    @commands.command()
+    async def hello(self, ctx):
+        await ctx.send("Hello World!")
+
+async def setup(bot):
+    await bot.add_cog(Example(bot))
+```
+---
+
+🔐 Security
+
+⚠️ Never expose your bot token publicly
+
+For production:
+```
+import os
+TOKEN = os.getenv("TOKEN")
+```
+---
+
+📈 Future Upgrades
+
+- 🔥 Slash Commands
+- 🎫 Ticket System
+- 🤖 Auto Moderation
+- 💰 Crypto Features
+- 🌐 Web Dashboard
+
+---
+
+🤝 Contributing
+
+1. Fork the repository
+2. Create your branch
+3. Commit changes
+4. Open Pull Request
+
+---
+
+⭐ Show Support
+
+If this helped you:
+
+- ⭐ Star the repo
+- 🍴 Fork it
+- 🚀 Use it in your projects
 
 ---
 
 <p align="center">
-  Built with ❤️ by Drunken
+  Made with ❤️ by Drunken 
+</p><p align="center">
+  <img src="https://capsule-render.vercel.app/api?type=waving&color=5865F2&height=120&section=footer"/>
 </p>
