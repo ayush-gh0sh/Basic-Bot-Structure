@@ -50,27 +50,27 @@ async def setup(bot):
 
 📌 UI System ("ui/") ⚠️ IMPORTANT
 
-This is where most people mess up — so read properly.
+This is where most people mess up — read carefully.
 
-❌ These files are NOT loaded by the bot:
+❌ These files are NOT loaded automatically:
 
 - buttons
 - views
 - modals
 
-👉 Because they don’t have "setup()"
+👉 Because they do not contain "setup()"
 
 ---
 
 🧩 How UI Actually Works
 
-UI files are manually imported inside commands.
+UI files are manually imported inside command files.
 
 ---
 
 🔹 Example Flow
 
-users/panel.py → calls → ui/buttons.py → ui/views.py
+users/panel.py → ui/views.py → ui/buttons.py
 
 ---
 
@@ -96,7 +96,7 @@ from ui.buttons import MyButton
 
 class MyView(discord.ui.View):
     def __init__(self):
-        super().__init__(timeout=None)  # persistent
+        super().__init__(timeout=None)
         self.add_item(MyButton())
 
 ---
@@ -124,7 +124,7 @@ async def setup(bot):
 ✔️ Commands Folder ("users/")
 
 - Must contain "setup()"
-- Auto-loaded by bot
+- Automatically loaded by bot
 
 ---
 
@@ -138,16 +138,16 @@ async def setup(bot):
 
 ❗ Why This Separation?
 
-- Keeps bot clean
+- Keeps bot structure clean
 - Prevents loader errors
-- Avoids "no setup function" issues
+- Avoids ""no setup function"" issues
 - Matches real production bots
 
 ---
 
 🚀 Scaling Your Structure
 
-🔹 Option 1 (Recommended for you)
+🔹 Option 1 (Role-Based — Recommended)
 
 bot/
 ├── users/
@@ -157,7 +157,7 @@ bot/
 
 ---
 
-🔹 Option 2 (Advanced)
+🔹 Option 2 (Advanced Structure)
 
 bot/
 ├── commands/
@@ -207,10 +207,10 @@ This repo avoids:
 🔥 Why This Is Good
 
 - ✅ Beginner friendly
-- ✅ Clean GitHub look
+- ✅ Clean GitHub structure
 - ✅ Easy to extend
 - ✅ No loader errors
-- ✅ UI properly separated
+- ✅ Proper UI separation
 
 ---
 
