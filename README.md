@@ -7,6 +7,7 @@
 </p><p align="center">
   <b>Clean, role-based Discord bot with modular command loading + UI system.</b>
 </p>
+
 ---
 
 ✨ Overview
