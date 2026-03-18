@@ -6,7 +6,8 @@
   <img src="https://img.shields.io/github/stars/ayush-gh0sh/Basic-Bot-Structure?style=for-the-badge" />
 </p><p align="center">
   <b>Clean, role-based Discord bot with modular command loading + UI system.</b>
-</p>---
+</p>
+---
 
 ✨ Overview
 
